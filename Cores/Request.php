@@ -210,9 +210,19 @@ class Request {
         return $this;
     }
 
+    public function addQueryArrayRecursive(array $query) : self {
+        $this->get = array_merge_recursive($this->get, $query);
+        return $this;
+    }
+
     public function addQueryString(String $key, String $value) : self {
         $this->get[$key] = $value;
         return $this; 
+    }
+
+    public function setGetVars(array $get) : self {
+        $this->get = $get;
+        return $this;
     }
 
 }
