@@ -54,7 +54,7 @@ class Select extends Database_Query {
 		if (is_array($on)) $_on = implode (' AND ', $on);
 		if ($type == 'left') $__join = ' LEFT ' . $__join;
 		else if ($type == 'right') $__join = ' RIGHT ' . $__join;
-		$this->_join[] = $__join . $join . ' ON ( ' . $on . ' ) ';
+		$this->_join[] = $__join . $join . ' ON ( ' . $_on . ' ) ';
 		return $this;
 	}
 
