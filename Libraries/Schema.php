@@ -82,7 +82,7 @@ class Schema {
 
 	private string $ddlSchema = "
 		CREATE TABLE IF NOT EXISTS schema_sync (
-			`schmId` SERIAL PRIMARY KEY,
+			`schmId` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
 			`schmVersion` VARCHAR(255) NOT NULL DEFAULT '',
 			`schmLatestFile` VARCHAR(1000) NOT NULL DEFAULT '',
 			`schmCreatedUserId` VARCHAR(150) NOT NULL DEFAULT '',
