@@ -38,8 +38,7 @@ use Lukiman\Models\Schema as SchemaModel;
  *    This executes all pending migration files in order from the Migrations/ folder.
  *    
  *    Optional: Run migrations up to a specific version:
- *    $result = $schema->get_Update(['20240115']);
- * 
+ *    $result = $schema->get_Update(['20240115143022']);
  * Migration File Structure:
  * 
  * - Files must be placed in ROOT_PATH/Migrations/ directory
