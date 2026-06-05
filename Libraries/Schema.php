@@ -184,7 +184,7 @@ class Schema {
 
 		$statements = [];
 
-		// Match PostgreSQL functions using $$ delimiter
+		// Match SQL functions using $$ delimiter
 		$functionRegex = '/
 			(CREATE\s+(?:OR\s+REPLACE\s+)?(?:FUNCTION|PROCEDURE)\s+
 			.*?
