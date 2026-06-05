@@ -267,7 +267,8 @@ class Schema {
 	}
 
 	private function getFileList() : array {
-		$dir = scandir(ROOT_PATH . $this->folder, SCANDIR_SORT_ASCENDING);
+		$dir = scandir($this->folder, SCANDIR_SORT_ASCENDING);
+		if ($dir === false) throw new ExceptionBase("Migrations folder \"{$this->folder}\" not found or not readable!", 404);
 		array_shift($dir); // remove . entry
 		array_shift($dir); // remove .. entry
 
