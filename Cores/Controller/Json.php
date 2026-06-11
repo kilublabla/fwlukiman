@@ -9,7 +9,12 @@ class Json extends Controller {
 	protected $_errorMessage = '';
 
 	public function execute($action = 'Index', ?array $params = null, ?Request $request = null) : mixed {
-		parent::execute($action, $params, $request);
+		try {
+			parent::execute($action, $params, $request);
+		} catch (\Exception $e) {
+			$this->setError(true)->setErrorCode((int) $e->getCode())->setErrorMessage($e->getMessage());
+			//return '';//$e->getMessage();
+		}
 
 		$this->addHeaders(array(
 			// 'Access-Control-Allow-Origin' 		=> (isset($_SERVER['HTTP_ORIGIN']) ? $_SERVER['HTTP_ORIGIN'] : (isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '') ),
@@ -18,6 +23,8 @@ class Json extends Controller {
 		));
 
 		$result = $this->getResult();
+		if (!empty($result) AND !is_array($result)) $result = array('result' => $result);
+		if (empty($result)) $result = [];
 		if ( $this->_error OR (is_array($result) AND !isset($result['status'])) ) $result['status'] = array(
 			'error'		=> $this->_error,
 			'errorCode'	=> $this->_errorCode,
