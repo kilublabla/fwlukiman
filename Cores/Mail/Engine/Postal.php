@@ -26,7 +26,6 @@ class Postal extends Base {
 		
 		var_dump($responseString);
 		$response = json_decode($responseString, true);
-		print_r($response);
 		if (isset($response['status']) && $response['status'] === 'success') {
 			return true;
 		}
