@@ -21,9 +21,8 @@ class Postal extends Base {
 			'Content-Type: application/json',
 			'X-Server-API-Key: ' . $this->config['api_key']
 		));
-		//$responseString = curl_exec($curl);
+		$responseString = curl_exec($curl);
 		curl_close($curl);
-		$responseString = '{"status":"success","time":0.106,"flags":{},"data":{"message_id":"e9f147a9-2944-4b97-bcd6-9d72e3cc72be@rp.di.surel.in","messages":{"erik.lukiman@gmail.com":{"id":16,"token":"1RtpIcrsUwJsbXcT"}}}}'; // Simulated response for testing
 		
 		var_dump($responseString);
 		$response = json_decode($responseString, true);
