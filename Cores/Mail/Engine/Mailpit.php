@@ -6,6 +6,10 @@ class Mailpit extends Base
 {
   public function simpleSend(String $to, String $from, String $subject, String $message): bool
   {
+    if (empty($from)) {
+      $from = strval($this->config['default_from'] ?? '');
+    }
+
     $host = strval($this->config['host'] ?? '127.0.0.1');
     $port = intval($this->config['port'] ?? 1025);
     $timeout = intval($this->config['timeout'] ?? 10);

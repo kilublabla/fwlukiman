@@ -9,13 +9,16 @@ class Mail {
         if (!self::checkEmail($to)) {
             throw new \InvalidArgumentException('Invalid recipient email address', 400);
         }
+
+        $mailer = MailFactory::instantiate();
+        if (empty($from)) {
+            $from = strval($mailer->getConfig('default_from', ''));
+        }
+
         if (!empty($from) AND !self::checkEmail($from)) {
             throw new \InvalidArgumentException('Invalid sender email address', 400);
         }
-        $headers = 'From: ' . $from . "\r\n" .
-                   'Reply-To: ' . $from . "\r\n" .
-                   'X-Mailer: PHP/' . phpversion();
-        $result = MailFactory::instantiate()->simpleSend($to, $from, $subject, $message);
+        $result = $mailer->simpleSend($to, $from, $subject, $message);
         return $result;
         //return mail($to, $subject, $message, $headers);
     }
